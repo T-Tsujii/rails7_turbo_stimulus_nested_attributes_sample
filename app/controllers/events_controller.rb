@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.speakers.build
   end
 
   def create
@@ -14,7 +15,7 @@ class EventsController < ApplicationController
       flash[:notice] = "作成しました。"
       redirect_to event_path(@event)
     else
-      render :new
+      render :form
     end
   end
 
@@ -23,7 +24,7 @@ class EventsController < ApplicationController
       flash[:notice] = "更新しました。"
       redirect_to event_path(@event)
     else
-      render :edit
+      render :form
     end
   end
 
@@ -36,10 +37,10 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    Event.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:title, :body, :date, speakers: [:id, :name, :title, :start_time, :end_time, :_destroy])
+    params.require(:event).permit(:title, :body, :date, speakers_attributes: [:id, :name, :title, :start_time, :end_time, :_destroy])
   end
 end
