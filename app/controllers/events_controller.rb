@@ -19,6 +19,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @speakers = @event.speakers.order(start_time: :asc)
+  end
+
   def update
     if @event.update(event_params)
       flash[:notice] = "更新しました。"
