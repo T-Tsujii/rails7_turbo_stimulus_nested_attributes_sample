@@ -1,6 +1,4 @@
-# イベント登録アプリ
-
-JSは1行も書いていません。
+# イベント登録アプリ(Stimulusを利用)
 
 <img width="1006" alt="スクリーンショット 2022-04-17 19 49 01" src="https://user-images.githubusercontent.com/52148373/163711303-028f79ee-d2b2-41c7-9d51-b61a3b156d93.png">
 

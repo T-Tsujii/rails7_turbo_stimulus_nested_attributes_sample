@@ -4,5 +4,5 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import RemovalFieldController from "./removal_field_controller"
+application.register("removal-field", RemovalFieldController)

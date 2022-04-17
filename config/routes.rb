@@ -4,5 +4,4 @@ Rails.application.routes.draw do
       resources :speakers, only: [:new]
     end
   end
-  resources :removal_fields, only: [:new, :edit]
 end

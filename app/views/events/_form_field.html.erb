@@ -1,29 +1,21 @@
-<%# 削除対象のタグを特定するための uuid を生成 %>
-<% uuid = SecureRandom.uuid %>
-
-<%= turbo_frame_tag uuid do %>
-  <div class="card mb-3">
-    <div class="card-header d-flex align-items-center">
-      <div>
-        登壇者
-      </div>
-      <div class="ms-auto">
-        <%# 新規フィールドは new アクション, 編集フィールドは edit アクションを起動させる %>
-        <%# 削除するタグを特定するための uuid を埋め込む。編集時は record_name を渡しておく %>
-        <% path = f.object.new_record? ? new_removal_field_path(uuid: uuid) : edit_removal_field_path(f.object, uuid: uuid, object_name: f.object_name) %>
-        <%= link_to path, class: "fs-5 text-danger" do %>
-          <i class="bi bi-dash-circle"></i>
-        <% end %>
-      </div>
+<div class="card mb-3" data-controller="removal-field" data-removal-field-object-name-value="<%= f.object_name %>">
+  <div class="card-header d-flex align-items-center">
+    <div>
+      登壇者
     </div>
-
-    <div id="card-body">
-      <div class="p-4">
-        <%= f.input :name %>
-        <%= f.input :title %>
-        <%= f.input :start_time, html5: true %>
-        <%= f.input :end_time, html5: true %>
-      </div>
+    <div class="ms-auto">
+      <% action = f.object.new_record? ? "remove" : "replace" %>
+      <span class="fs-5 text-danger cursor-pointer" data-action="click->removal-field#<%= action %>">
+        <i class="bi bi-dash-circle"></i>
+      </span>
     </div>
   </div>
-<% end %>
+  <div id="card-body">
+    <div class="p-4">
+      <%= f.input :name %>
+      <%= f.input :title %>
+      <%= f.input :start_time, html5: true %>
+      <%= f.input :end_time, html5: true %>
+    </div>
+  </div>
+</div>
